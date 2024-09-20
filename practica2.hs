@@ -5,6 +5,7 @@ maximo x y = if x==y
                  else if x>y
                       then x
                  else y
+
 --------------- Listas y recursión ---------------
 
 longitud :: [a] -> Int
@@ -25,21 +26,22 @@ maximoLista [x] = x
 maximoLista (x:xs) = maximo x (maximoLista xs)
 
 indice :: [a] -> Int -> a
-indice [a] 0 = a
-indice (x:xs) n = if n > longitud (x:xs)
-                     then error "La lista no tiene tantos elementos"
-                  else if n < 0
-                     then error "Indice negativo"
-                  else
-                     indice xs (n-1)
+indice (x:xs) 0 = x
+indice (x:xs) n = if n >= longitud (x:xs) || n<0
+                     then error "El indice dado no pertenece al rango"
+                  else if n == 0 
+                     then x
+                  else 
+                     indice (xs) (n-1)
 
 --------------- Listas por comprehensión ---------------
 
 divisores :: Int -> [Int]
-divisores _ = undefined
+divisores n = [x | x <- [1..n], mod n x == 0]
 
 conjunto :: Eq a => [a] -> [a]
-conjunto _ = undefined
+conjunto [] = []
+conjunto (x:xs) = x : conjunto[y | y <- xs , y /= x ]
 
 numerosPares :: [Int] -> [Int]
-numerosPares _ = undefined
+numerosPares (x:xs) = [n | n <- (x:xs), mod n 2 == 0]
