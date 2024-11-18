@@ -42,5 +42,5 @@ numerosPares :: [Int] -> [Int]
 numerosPares [] = []
 numerosPares (x:xs) = if x `div` 2 * 2 == x  
                        then x : numerosPares xs  
-                      else numerosPares xs
+                       else numerosPares xs
      
